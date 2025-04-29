@@ -1,5 +1,7 @@
 "use client";
 
+import { Color } from "@tiptap/extension-color";
+import FontFamily from "@tiptap/extension-font-family";
 import Highlight from "@tiptap/extension-highlight";
 import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
@@ -14,23 +16,56 @@ import TextStyle from "@tiptap/extension-text-style";
 import Underline from "@tiptap/extension-underline";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { Ruler } from "lucide-react";
 import ImageResize from "tiptap-extension-resize-image";
 
+import { FontSizeExtension } from "@/app/extensions/font-size";
+import { LineHeightExtension } from "@/app/extensions/line-height";
+import { useEditorStore } from "@/store/use-editor-store";
+
 const Editor = () => {
+  const { setEditor } = useEditorStore();
   const editor = useEditor({
+    onCreate: ({ editor }) => {
+      editor?.commands.setFontFamily("Arial");
+      setEditor(editor);
+    },
+    onUpdate: ({ editor }) => {
+      setEditor(editor);
+    },
+    onSelectionUpdate: ({ editor }) => {
+      setEditor(editor);
+    },
+    onTransaction: ({ editor }) => {
+      setEditor(editor);
+    },
+    onFocus: ({ editor }) => {
+      setEditor(editor);
+    },
+    onBlur: ({ editor }) => {
+      setEditor(editor);
+    },
+    onContentError: ({ editor }) => {
+      setEditor(editor);
+    },
+    onDestroy: () => {
+      setEditor(null);
+    },
     extensions: [
+      Color,
+      FontFamily,
+      FontSizeExtension,
       Highlight.configure({ multicolor: true }),
-      Image,
+      Image.extend({
+        name: "image-editor",
+      }),
       ImageResize,
+      LineHeightExtension,
       Link.configure({
         openOnClick: false,
         autolink: true,
         defaultProtocol: "https",
       }),
-      StarterKit.configure({
-        history: false,
-      }),
+      StarterKit,
       Table.configure({
         resizable: true,
       }),
@@ -71,9 +106,12 @@ const Editor = () => {
     },
   });
 
+  // const { setEditor } = useEditorStore();
+  // setEditor(editor);
+
   return (
     <div className="size-full overflow-x-auto bg-[#f9fbfd] px-4 print:overflow-visible print:bg-white print:p-0">
-      <Ruler />
+      {/* <Ruler /> */}
 
       <div className="mx-auto flex min-w-max justify-center py-4 print:w-full print:min-w-0 print:py-0">
         <EditorContent editor={editor} />
