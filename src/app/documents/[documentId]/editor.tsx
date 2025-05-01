@@ -21,6 +21,7 @@ import ImageResize from "tiptap-extension-resize-image";
 import { FontSizeExtension } from "@/app/extensions/font-size";
 import { LineHeightExtension } from "@/app/extensions/line-height";
 import { useEditorStore } from "@/store/use-editor-store";
+import { Ruler } from "./ruler";
 
 const Editor = () => {
   const { setEditor } = useEditorStore();
@@ -111,7 +112,7 @@ const Editor = () => {
 
   return (
     <div className="size-full overflow-x-auto bg-[#f9fbfd] px-4 print:overflow-visible print:bg-white print:p-0">
-      {/* <Ruler /> */}
+      <Ruler />
 
       <div className="mx-auto flex min-w-max justify-center py-4 print:w-full print:min-w-0 print:py-0">
         <EditorContent editor={editor} />
