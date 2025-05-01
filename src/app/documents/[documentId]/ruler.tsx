@@ -1,6 +1,6 @@
 "use client";
-import { Pin } from "lucide-react";
 import { useRef, useState } from "react";
+import { FaCaretDown } from "react-icons/fa";
 
 const editorWidth = 816;
 const editorMargin = 56;
@@ -156,7 +156,7 @@ const Maker = ({
       onMouseDown={onMouseDown}
       onDoubleClick={onDoubleClick}
     >
-      <Pin className="trasnform absolute left-1/2 top-0 h-full -translate-x-1/2 fill-blue-500" />
+      <FaCaretDown className="trasnform absolute left-1/2 top-0 h-full -translate-x-1/2 fill-blue-500" />
 
       <div
         className="absolute left-1/2 top-4 h-screen w-px -translate-x-1/2 scale-x-50 transform bg-blue-500"
