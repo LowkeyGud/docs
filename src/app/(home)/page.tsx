@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Navbar } from "./navbar";
+import { TemplateGallery } from "./template-gallery";
 
 function HomePage() {
   return (
@@ -8,9 +8,7 @@ function HomePage() {
         <Navbar />
       </div>
       <div className="mt-16">
-        <Link href="/documents/1" className="text-blue-500 hover:underline">
-          Click here to go to document 1
-        </Link>
+        <TemplateGallery />
       </div>
     </div>
   );
