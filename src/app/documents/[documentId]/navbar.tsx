@@ -35,6 +35,7 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { useEditorStore } from "@/store/use-editor-store";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 
 export const Navbar = () => {
   const { editor } = useEditorStore();
@@ -301,14 +302,14 @@ export const Navbar = () => {
         {/* <Avatars /> */}
         {/* <Inbox /> */}
 
-        {/* <OrganizationSwitcher
+        <OrganizationSwitcher
           afterCreateOrganizationUrl="/"
           afterLeaveOrganizationUrl="/"
           afterSelectOrganizationUrl="/"
           afterSelectPersonalUrl="/"
-        /> */}
+        />
 
-        {/* <UserButton /> */}
+        <UserButton />
       </div>
     </nav>
   );
