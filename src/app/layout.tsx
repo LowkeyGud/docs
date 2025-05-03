@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { ConvexClientProvider } from "@/components/convex-client-provider";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const inter = Inter({
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
         <NuqsAdapter>
+          <Toaster theme="light" closeButton richColors />
           <ConvexClientProvider>{children}</ConvexClientProvider>
         </NuqsAdapter>
       </body>
