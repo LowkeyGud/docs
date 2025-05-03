@@ -21,11 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <NuqsAdapter>
-        <ConvexClientProvider>
-          <body className={`${inter.className} antialiased`}>{children}</body>
-        </ConvexClientProvider>
-      </NuqsAdapter>
+      <body className={`${inter.className} antialiased`}>
+        <NuqsAdapter>
+          <ConvexClientProvider>{children}</ConvexClientProvider>
+        </NuqsAdapter>
+      </body>
     </html>
   );
 }
