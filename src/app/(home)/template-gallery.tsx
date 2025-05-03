@@ -12,13 +12,27 @@ import {
 } from "@/components/ui/carousel";
 import { templates } from "@/constants/templates";
 import { cn } from "@/lib/utils";
+import { useMutation } from "convex/react";
+import { ConvexError } from "convex/values";
+import { toast } from "sonner";
+import { api } from "../../../convex/_generated/api";
 
 export const TemplateGallery = () => {
   const router = useRouter();
+  const create = useMutation(api.documents.create);
   const [isCreating, setIsCreating] = useState(false);
 
-  const onTemplateClick = (label: string, initialContent: string) => {
-    router.push(`/documents/${label}`);
+  const onTemplateClick = (title: string, initialContent: string) => {
+    setIsCreating(true);
+
+    create({ title, initialContent })
+      .then((documentId) => router.push(`/documents/${documentId}`))
+      .catch((error) => {
+        const errorMessage =
+          error instanceof ConvexError ? error.data : "Something went wrong!";
+        toast.error(errorMessage);
+      })
+      .finally(() => setIsCreating(false));
   };
 
   return (
